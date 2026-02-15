@@ -6,6 +6,10 @@ namespace ME.Testing
 {
     public class Testing : MonoBehaviour
     {
+        [Header("Debug")]
+        [SerializeField] private Transform gridObjectPrefab;
+
+        [Header("Mouse Interaction")]
         [SerializeField] private LayerMask pointerPlaneLayerMask;
         [SerializeField] private Camera cam;
 
@@ -13,6 +17,7 @@ namespace ME.Testing
 
         private void Start() {
             gridSystem = new GridSystem(10, 10, 2f);
+            gridSystem.CreateDebugObjects(gridObjectPrefab);
         }
 
         private void Update() {
