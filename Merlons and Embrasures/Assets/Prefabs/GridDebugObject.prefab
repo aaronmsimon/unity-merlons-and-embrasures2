@@ -190,6 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2010937908014602005}
+  - component: {fileID: 2500208127925554966}
   m_Layer: 0
   m_Name: GridDebugObject
   m_TagString: Untagged
@@ -213,3 +214,16 @@ Transform:
   - {fileID: 4653992980239810957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2500208127925554966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4065421018103785229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d27c56e51d74bc4c8820c583b101203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ME.Testing.GridDebugObject
+  text: {fileID: 6047081441177806865}
