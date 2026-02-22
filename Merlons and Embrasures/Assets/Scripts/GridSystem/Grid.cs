@@ -1,16 +1,16 @@
 using UnityEngine;
 using ME.Testing;
 
-namespace CodeMonkey.Grid
+namespace CodeMonkey.GridSystem
 {
-    public class GridSystem
+    public class Grid
     {
         private int width;
         private int height;
         private float cellSize;
         private GridObject[,] gridObjects;
 
-        public GridSystem(int width, int height, float cellSize) {
+        public Grid(int width, int height, float cellSize) {
             this.width = width;
             this.height = height;
             this.cellSize = cellSize;
@@ -42,11 +42,12 @@ namespace CodeMonkey.Grid
                     Transform debugTransform = GameObject.Instantiate(debugPrefab, GetWorldPosition(gridPosition), Quaternion.identity);
                     GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
                     gridDebugObject.SetGridObject(GetGridObject(gridPosition));
+                    gridDebugObject.UpdateFontSize(cellSize);
                 }
             }
         }
 
-        private GridObject GetGridObject(GridPosition gridPosition) {
+        public GridObject GetGridObject(GridPosition gridPosition) {
             return gridObjects[gridPosition.x, gridPosition.z];
         }
     }

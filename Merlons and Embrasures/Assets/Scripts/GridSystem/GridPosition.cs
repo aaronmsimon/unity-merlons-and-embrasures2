@@ -1,4 +1,4 @@
-namespace CodeMonkey.Grid
+namespace CodeMonkey.GridSystem
 {
     public struct GridPosition
     {
