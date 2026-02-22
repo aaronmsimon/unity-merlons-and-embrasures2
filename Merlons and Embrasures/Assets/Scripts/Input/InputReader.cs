@@ -1,86 +1,52 @@
-// using UnityEngine;
-// using UnityEngine.InputSystem;
-// using UnityEngine.Events;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
-// namespace MJ.Input
-// {
-//     [CreateAssetMenu(fileName = "InputReader", menuName = "Input Reader")]
-//     public class InputReader : ScriptableObject, GameInput.IGameplayActions
-//     {
-//         // Gameplay
-//         public event UnityAction<Vector2, InputDevice> submitEvent;
+namespace ME.Input
+{
+    [CreateAssetMenu(fileName = "InputReader", menuName = "Input Reader")]
+    public class InputReader : ScriptableObject, GameInput.IGameplayActions
+    {
+        // Gameplay
+        public event UnityAction mouseLeftClickEvent;
 
-//         private GameInput gameInput;
+        private GameInput gameInput;
 
-//         private Vector2 lastPointerScreenPos;
+        private Vector2 lastPointerScreenPos;
 
-//         private void OnEnable()
-//         {
-//             if (gameInput == null)
-//             {
-//                 gameInput = new GameInput();
-//                 gameInput.Debug.SetCallbacks(this);
-//                 gameInput.Gameplay.SetCallbacks(this);
-//             }
+        private void OnEnable()
+        {
+            if (gameInput == null)
+            {
+                gameInput = new GameInput();
+                gameInput.Gameplay.SetCallbacks(this);
+            }
 
-//             EnableGameplayInput();
-//         }
+            EnableGameplayInput();
+        }
 
-//         private void OnDisable()
-//         {
-//             DisableAllInput();
-//         }
+        private void OnDisable()
+        {
+            DisableAllInput();
+        }
 
-//         // Debug Events
-//         public void OnStartNewGame(InputAction.CallbackContext context)
-//         {
-//             if (context.phase == InputActionPhase.Performed)
-//                 startNewGameEvent?.Invoke();
-//         }
+        // Gameplay Events
+        public void OnMouseLeftClick(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed) {
+                mouseLeftClickEvent?.Invoke();
+            }
+        }
 
-//         public void OnNextTurn(InputAction.CallbackContext context)
-//         {
-//             if (context.phase == InputActionPhase.Performed)
-//                 nextTurnEvent?.Invoke();
-//         }
+        // Enable/Disable Action Maps
+        public void EnableGameplayInput()
+        {
+            gameInput.Gameplay.Enable();
+        }
 
-//         public void OnPrintHands(InputAction.CallbackContext context)
-//         {
-//             if (context.phase == InputActionPhase.Performed)
-//                 printHandsEvent?.Invoke();
-//         }
-
-//         public void OnPrintGameState(InputAction.CallbackContext context)
-//         {
-//             if (context.phase == InputActionPhase.Performed)
-//                 printGameStateEvent?.Invoke();
-//         }
-
-//         // Gameplay Events
-//         public void OnSubmit(InputAction.CallbackContext context)
-//         {
-//             if (context.phase == InputActionPhase.Performed) {
-//                 if (Pointer.current != null) lastPointerScreenPos = Pointer.current.position.ReadValue();
-//                 submitEvent?.Invoke(lastPointerScreenPos, context.control?.device);
-//             }
-//         }
-
-//         // Enable/Disable Action Maps
-
-//         public void EnableDebugInput()
-//         {
-//             gameInput.Debug.Enable();
-//         }
-
-//         public void EnableGameplayInput()
-//         {
-//             gameInput.Gameplay.Enable();
-//         }
-
-//         public void DisableAllInput()
-//         {
-//             gameInput.Debug.Disable();
-//             gameInput.Gameplay.Disable();
-//         }
-//     }
-// }
+        public void DisableAllInput()
+        {
+            gameInput.Gameplay.Disable();
+        }
+    }
+}
